@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { connect } = require("../db.js");
+const { Playlist } = require("../models/Playlist.js");
 
 let playlistList = [
   {
@@ -23,7 +24,6 @@ const playlistSeed = async () => {
 
     // BORRADO
     await Sample.collection.drop();
-    await SubSample.collection.drop();
     console.log("Borrados samples y subsamples");
 
     // CREACION DOCUMENTOS
