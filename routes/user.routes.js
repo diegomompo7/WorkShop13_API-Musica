@@ -1,7 +1,7 @@
 const express = require("express");
+const { User } = require("../models/User.js");
 
 // Modelos
-const { Sample } = require("../models/Sample.js");
 
 const router = express.Router();
 
@@ -11,19 +11,18 @@ router.get("/", async (req, res) => {
     // Asi leemos query params
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
-    const samples = await Sample.find()
+    const users = await User.find()
       .limit(limit)
-      .skip((page - 1) * limit)
-      .populate("child");
+      .skip((page - 1) * limit);
 
     // Num total de elementos
-    const totalElements = await Sample.countDocuments();
+    const totalElements = await User.countDocuments();
 
     const response = {
       totalItems: totalElements,
       totalPages: Math.ceil(totalElements / limit),
       currentPage: page,
-      data: samples,
+      data: users,
     };
 
     res.json(response);
@@ -37,9 +36,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const sample = await Sample.findById(id).populate("child");
-    if (sample) {
-      res.json(sample);
+    const user = await User.findById(id);
+    if (user) {
+      res.json(user);
     } else {
       res.status(404).json({});
     }
@@ -49,13 +48,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get("/title/:title", async (req, res) => {
-  const title = req.params.title;
+router.get("/firstName/:firstName", async (req, res) => {
+  const firstName = req.params.firstName;
 
   try {
-    const sample = await Sample.find({ title: new RegExp("^" + title.toLowerCase(), "i") }).populate("child");
-    if (sample?.length) {
-      res.json(sample);
+    const user = await User.find({ firstName: new RegExp("^" + firstName.toLowerCase(), "i") });
+    if (user?.length) {
+      res.json(user);
     } else {
       res.status(404).json([]);
     }
@@ -70,13 +69,14 @@ router.post("/", async (req, res) => {
   console.log(req.headers);
 
   try {
-    const sample = new Sample({
-      title: req.body.title,
-      subtitle: req.body.subtitle,
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
     });
 
-    const createdSample = await sample.save();
-    return res.status(201).json(createdSample);
+    const createdUser = await user.save();
+    return res.status(201).json(createdUser);
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
@@ -87,7 +87,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const sampleDeleted = await Sample.findByIdAndDelete(id);
+    const sampleDeleted = await User.findByIdAndDelete(id);
     if (sampleDeleted) {
       res.json(sampleDeleted);
     } else {
@@ -103,7 +103,7 @@ router.delete("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const sampleUpdated = await Sample.findByIdAndUpdate(id, req.body, { new: true });
+    const sampleUpdated = await User.findByIdAndUpdate(id, req.body, { new: true });
     if (sampleUpdated) {
       res.json(sampleUpdated);
     } else {
@@ -115,4 +115,4 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-module.exports = { sampleRouter: router };
+module.exports = { userRouter: router };

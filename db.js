@@ -22,7 +22,10 @@ const connect = async () => {
   const database = await mongoose.connect(DB_URL, config);
   const name = database.connection.name;
   const host = database.connection.host;
-  console.log(`Conexión establecida con ${name} en ${host}`);
+  console.log(`
+Conexión establecida: 
+BBDD: ${name} 
+DIRECCION: ${host}`);
   return database;
 };
 

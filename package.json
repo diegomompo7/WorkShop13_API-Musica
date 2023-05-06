@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node --watch index.js",
     "seed:user": "node ./seeds/user.seed.js",
+    "seed:artist": "node ./seeds/artist.seed.js",
     "seed:song": "node ./seeds/song.seed.js",
     "seed:playlist": "node ./seeds/playlist.seed.js",
-    "seed:artist": "node ./seeds/artist.seed.js",
-    "seed:sample": "node ./seeds/sample.seed.js",
+    "seed:all-relations": "node ./seeds/all-relations.seed.js",
+    "seed:all": "npm run seed:user && npm run seed:artist && npm run seed:song && npm run seed:playlist && npm run seed:all-relations",
     "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
@@ -19,7 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "eslint": "^8.39.0",
+    "eslint": "^8.40.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",

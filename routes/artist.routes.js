@@ -1,10 +1,8 @@
 const express = require("express");
-const { Artist } = require("../models/Artist.js")
+const router = express.Router();
 
 // Modelos
-
-
-const router = express.Router();
+const { Artist } = require("../models/Artist.js");
 
 // CRUD: READ
 router.get("/", async (req, res) => {
@@ -14,7 +12,7 @@ router.get("/", async (req, res) => {
     const limit = parseInt(req.query.limit);
     const artists = await Artist.find()
       .limit(limit)
-      .skip((page - 1) * limit)
+      .skip((page - 1) * limit);
 
     // Num total de elementos
     const totalElements = await Artist.countDocuments();
@@ -37,7 +35,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const artist = await Artist.findById(id)
+    const artist = await Artist.findById(id);
     if (artist) {
       res.json(artist);
     } else {
@@ -53,7 +51,7 @@ router.get("/name/:name", async (req, res) => {
   const name = req.params.name;
 
   try {
-    const artist = await Artist.find({ title: new RegExp("^" + name.toLowerCase(), "i") })
+    const artist = await Artist.find({ name: new RegExp("^" + name.toLowerCase(), "i") });
     if (artist?.length) {
       res.json(artist);
     } else {

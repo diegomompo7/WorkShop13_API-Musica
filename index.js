@@ -1,5 +1,8 @@
 const express = require("express");
+const { songRouter } = require("./routes/song.routes.js");
 const { artistRouter } = require("./routes/artist.routes.js");
+const { playlistRouter } = require("./routes/playlist.routes.js");
+const { userRouter } = require("./routes/user.routes.js")
 
 // Conexión a la BBDD
 const { connect } = require("./db.js");
@@ -21,7 +24,10 @@ router.get("*", (req, res) => {
 });
 
 // Usamos las rutas
+server.use("/song", songRouter);
 server.use("/artist", artistRouter);
+server.use("/playlist", playlistRouter);
+server.use("/user", userRouter);
 server.use("/", router);
 
 server.listen(PORT, () => {

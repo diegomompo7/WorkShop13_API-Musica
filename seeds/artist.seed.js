@@ -68,12 +68,11 @@ let artistList = [
 const artistSeed = async () => {
   try {
     // CONEXION
-    const database = await connect();
+    await connect();
 
     // BORRADO
     await Artist.collection.drop();
     console.log("Borrados artistas");
-
 
     // CREACION DE LOS OTROS DOCUMENTOS
     artistList = artistList.map((elem) => new Artist(elem));

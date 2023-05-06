@@ -1,0 +1,649 @@
+{
+	"info": {
+		"_postman_id": "7ca9f1ca-1637-41d5-a668-ef5f598a68fe",
+		"name": "WORKSHOP 13 - API - MUSIC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14760802"
+	},
+	"item": [
+		{
+			"name": "Artist",
+			"item": [
+				{
+					"name": "GET Artist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Artist by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artist/64553f2b0429128de885e3ea",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"64553f2b0429128de885e3ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Artirst by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artist/name/Alaska",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"name",
+								"Alaska"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Artist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Beyoncé\",\r\n    \"genre\": \"female\",\r\n    \"active\": 1997,\r\n    \"country\": \"United States\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Artist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"active\" : 1979\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artist/64553f2b0429128de885e3ea",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"64553f2b0429128de885e3ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Artist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/artist/645623109ced1e3cff07da1b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"artist",
+								"645623109ced1e3cff07da1b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Song",
+			"item": [
+				{
+					"name": "GET Song",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Song by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song/645541e702ca6ea99dfa7530",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"645541e702ca6ea99dfa7530"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Song by Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/song/title/Vivir mi vida",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"title",
+								"Vivir mi vida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Song",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"title\": \"Despacito\",\r\n\"duration\": \"3:49\",\r\n\"yearReleased\": 2017\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/song",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Song",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"yearReleased\": 1985\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/song/645541e702ca6ea99dfa7530",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"645541e702ca6ea99dfa7530"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Song",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/song/64562a4eaabb31edec93e478",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"song",
+								"64562a4eaabb31edec93e478"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "GET Playlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Playlist by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist/64563000b09db3b65b488240",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"64563000b09db3b65b488240"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Song by Title",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/playlist/name/Musica Rock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"name",
+								"Musica Rock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Música POP\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/playlist",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Song to Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"songs\":\r\n            {\r\n                \"_id\": \"64562ffe50565ce123bb0067\"\r\n            }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/playlist/64563000b09db3b65b488240/song",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"64563000b09db3b65b488240",
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Playlist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Música Hip-hop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/playlist/645635895ded07087fd8c15c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"645635895ded07087fd8c15c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/playlist/645635895ded07087fd8c15c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"645635895ded07087fd8c15c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Song from Playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"songs\":\r\n            {\r\n                \"_id\": \"64562ffe50565ce123bb0067\"\r\n            }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/playlist/64563000b09db3b65b488240/song",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"playlist",
+								"64563000b09db3b65b488240",
+								"song"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/64553d7a75672f213b3605d6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"64553d7a75672f213b3605d6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by FirstName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/firstName/Olaf",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"firstName",
+								"Olaf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"firstName\": \"Ana\",\r\n\"lastName\": \"García Pérez\",\r\n\"email\": \"anagarcia@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"Andrea\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/64562fb05e38249098ed97d7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"64562fb05e38249098ed97d7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/64562fb05e38249098ed97d7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"64562fb05e38249098ed97d7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

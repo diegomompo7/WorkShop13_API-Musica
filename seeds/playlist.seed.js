@@ -20,25 +20,17 @@ let playlistList = [
 const playlistSeed = async () => {
   try {
     // CONEXION
-    const database = await connect();
+    await connect();
 
     // BORRADO
-    await Sample.collection.drop();
-    console.log("Borrados samples y subsamples");
+    await Playlist.collection.drop();
+    console.log("Borradas playlists");
 
-    // CREACION DOCUMENTOS
-    subSampleList = subSampleList.map((elem) => new SubSample(elem));
+    // MAPEO E INSERCION
+    playlistList = playlistList.map((playList) => new Playlist(playList));
 
-    // RELACIONES
-    sampleList[0].child = subSampleList[0]._id;
-    sampleList[1].child = subSampleList[1]._id;
-
-    // CREACION DE LOS OTROS DOCUMENTOS
-    sampleList = sampleList.map((elem) => new Sample(elem));
-
-    await SubSample.insertMany(subSampleList);
-    await Sample.insertMany(sampleList);
-    console.log("Creados samples correctamente");
+    await Playlist.insertMany(playlistList);
+    console.log("Creadas playlists correctamente");
   } catch (error) {
     console.error(error);
   } finally {
@@ -46,4 +38,4 @@ const playlistSeed = async () => {
   }
 };
 
-sampleSeed();
+playlistSeed();

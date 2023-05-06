@@ -1,10 +1,8 @@
 const express = require("express");
+const router = express.Router();
 
 // Modelos
-const { SubSample } = require("../models/SubSample.js");
-const { Sample } = require("../models/Sample.js");
-
-const router = express.Router();
+const { Song } = require("../models/Song.js");
 
 // CRUD: READ
 router.get("/", async (req, res) => {
@@ -12,18 +10,18 @@ router.get("/", async (req, res) => {
     // Asi leemos query params
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
-    const subSamples = await SubSample.find()
+    const songs = await Song.find()
       .limit(limit)
       .skip((page - 1) * limit);
 
     // Num total de elementos
-    const totalElements = await SubSample.countDocuments();
+    const totalElements = await Song.countDocuments();
 
     const response = {
       totalItems: totalElements,
       totalPages: Math.ceil(totalElements / limit),
       currentPage: page,
-      data: subSamples,
+      data: songs,
     };
 
     res.json(response);
@@ -37,22 +35,27 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    let subSample = await SubSample.findById(id);
-
-    if (subSample) {
-      const includeParents = req.query.includeParents === "true";
-
-      if (includeParents) {
-        const parents = await Sample.find({ child: id });
-        if (parents) {
-          subSample = subSample.toObject();
-          subSample.parents = parents;
-        }
-      }
-
-      res.json(subSample);
+    const song = await Song.findById(id);
+    if (song) {
+      res.json(song);
     } else {
       res.status(404).json({});
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
+router.get("/title/:title", async (req, res) => {
+  const title = req.params.title;
+
+  try {
+    const song = await Song.find({ title: new RegExp("^" + title.toLowerCase(), "i") });
+    if (song?.length) {
+      res.json(song);
+    } else {
+      res.status(404).json([]);
     }
   } catch (error) {
     console.error(error);
@@ -65,9 +68,15 @@ router.post("/", async (req, res) => {
   console.log(req.headers);
 
   try {
-    const subSample = new SubSample(req.body);
-    const createdSubSample = await subSample.save();
-    return res.status(201).json(createdSubSample);
+    const song = new Song({
+      title: req.body.title,
+      duration: req.body.duration,
+      yearReleased: req.body.yearReleased,
+      artist: req.body.artist,
+    });
+
+    const createdSong = await song.save();
+    return res.status(201).json(createdSong);
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
@@ -78,9 +87,9 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const subSampleDeleted = await SubSample.findByIdAndDelete(id);
-    if (subSampleDeleted) {
-      res.json(subSampleDeleted);
+    const songDeleted = await Song.findByIdAndDelete(id);
+    if (songDeleted) {
+      res.json(songDeleted);
     } else {
       res.status(404).json({});
     }
@@ -94,9 +103,9 @@ router.delete("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const subSampleUpdated = await SubSample.findByIdAndUpdate(id, req.body, { new: true });
-    if (subSampleUpdated) {
-      res.json(subSampleUpdated);
+    const songUpdated = await Song.findByIdAndUpdate(id, req.body);
+    if (songUpdated) {
+      res.json(songUpdated);
     } else {
       res.status(404).json({});
     }
@@ -106,4 +115,4 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-module.exports = { subSampleRouter: router };
+module.exports = { songRouter: router };
